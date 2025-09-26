@@ -1,0 +1,8 @@
+<div class="flex flex-row justify-start gap-3 pt-4">
+          <input type="date" v-model="dueDate" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none" />
+          <select v-model="category" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none">
+            <option value="Work">💼 Work</option>
+            <option value="Personal">🏡 Personal</option>
+            <option value="Urgent">⏰ Urgent</option>
+          </select>
+        </div>
