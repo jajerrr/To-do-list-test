@@ -1,43 +1,78 @@
-# ✅ To-do List App
+# ✅ To-do List App (Vue 3 + Pinia + Tailwind)
 
-แอปจัดการงาน (To-do List) ที่สร้างด้วย **Vue 3 + TypeScript + Pinia + TailwindCSS**  
-รองรับการเพิ่ม / แก้ไข / ลบ / จัดหมวดหมู่ และแยกแท็บระหว่างงานที่ยังไม่เสร็จ (My Tasks) และงานที่ทำเสร็จแล้ว (Completed)
+โปรเจกต์นี้เป็น To-do List Application ที่สร้างขึ้นด้วย **Vue 3 +
+TypeScript + Pinia + TailwindCSS**\
+ผู้ใช้สามารถเพิ่ม ลบ แก้ไข และจัดการงานได้อย่างง่ายดาย
+พร้อมทั้งแยกงานที่ทำเสร็จแล้วออกมาในแท็บ `Completed`
 
----
+------------------------------------------------------------------------
+
 
 ## 🚀 Features
 
-- ✨ **Add Task** → เพิ่มงานใหม่พร้อม **title, description, due date, category**  
-- 📝 **Edit Task** → แก้ไขรายละเอียดงานได้ผ่าน modal  
-- ✅ **Mark Complete** → กด checkbox เพื่อทำเครื่องหมายว่างานเสร็จแล้ว  
-- 📂 **Category with Emoji** → หมวดหมู่มีสี + emoji น่ารัก ๆ  
-  - 💼 Work  
-  - 🏡 Personal  
-  - ⏰ Urgent  
-- ⏳ **Overdue Highlight** → งานที่เลยกำหนดจะถูกแสดงด้วยสีแดง  
-- 🗑️ **Delete Task** → กดลบงานเดี่ยว ๆ (มี alert ยืนยันก่อนลบ)  
-- 🗑️ **Delete Completed** → ลบงานที่เสร็จทั้งหมดพร้อม alert ยืนยัน  
-- 💾 **LocalStorage Support** → รีเฟรชแล้วยังเก็บงานไว้ได้  
+- ✨ เพิ่มงานใหม่ พร้อม Title, Description, Due Date และ Category
+- 📂 หมวดหมู่ (Category) พร้อมอิโมจิ 💼 Work / 🏡 Personal / ⏰ Urgent
+- 🖊 แก้ไขงาน ได้ทั้ง Title, Description, Due Date, Category
+- ✅ Mark Complete / Undo Complete
+- 🗑 ลบงานทีละงาน (พร้อม Alert ยืนยันก่อนลบ)
+- 🧹 ลบงานที่ทำเสร็จทั้งหมด
+- 📌 Tab View
+  - `My Tasks` : งานที่ยังไม่เสร็จ
+  - `Completed` : งานที่เสร็จแล้ว
+- 📅 จัดเรียงงานตาม Due Date (งานที่ใกล้ครบกำหนดมากที่สุดจะขึ้นก่อน)
+- 💾 เก็บข้อมูลใน LocalStorage (เปิดแอปใหม่ งานยังอยู่)
 
----
+------------------------------------------------------------------------
+
+## 📂 Project Structure
+
+    src/
+     ├── assets/    
+     ├── components/        
+     ├── stores/            
+     ├── App.vue            
+     ├── main.ts           
+
+------------------------------------------------------------------------
 
 ## 🛠️ Tech Stack
 
-- [Vue 3](https://vuejs.org/) + [TypeScript](https://www.typescriptlang.org/)  
-- [Pinia](https://pinia.vuejs.org/) → จัดการ state ของ tasks  
-- [TailwindCSS](https://tailwindcss.com/) → UI ที่สวยและ responsive  
-- LocalStorage → เก็บ tasks แบบ offline  
+-   [Vue 3](https://vuejs.org/) (Composition API + `<script setup>`)
+-   [Pinia](https://pinia.vuejs.org/) (State Management)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [TailwindCSS](https://tailwindcss.com/) (UI Styling)
+-   LocalStorage API (สำหรับเก็บ tasks)
 
----
+------------------------------------------------------------------------
 
-## 📦 Installation
+## ▶️ การใช้งาน
 
-```bash
-# ติดตั้ง dependency
-npm install
+1.  ติดตั้ง dependencies
 
-# รันเซิร์ฟเวอร์ dev
-npm run dev
+    ``` bash
+    npm install
+    ```
 
-# build สำหรับ production
-npm run build
+2.  รันเซิร์ฟเวอร์ Development
+
+    ``` bash
+    npm run dev
+    ```
+
+3.  เปิดเบราว์เซอร์ไปที่:\
+    <http://localhost:5173>
+
+------------------------------------------------------------------------
+
+## 📸 UI Preview
+
+-   **My Tasks Tab**: แสดงงานที่ยังไม่เสร็จ พร้อมปุ่ม Add Task\
+
+
+-   **Completed Tab**: แสดงงานที่ทำเสร็จแล้ว พร้อมปุ่ม Delete All
+
+------------------------------------------------------------------------
+
+## ✨ Author
+
+Project by *Achiraya Komatsu*
