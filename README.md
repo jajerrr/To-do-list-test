@@ -67,9 +67,15 @@ TypeScript + Pinia + TailwindCSS**\
 ## 📸 UI Preview
 
 -   **My Tasks Tab**: แสดงงานที่ยังไม่เสร็จ พร้อมปุ่ม Add Task\
+![alt text](src/assets/images/task.png)
+
 
 
 -   **Completed Tab**: แสดงงานที่ทำเสร็จแล้ว พร้อมปุ่ม Delete All
+![alt text](<src/assets/images/complete task.png>)
+
+
+![alt text](src/assets/images/to-do-list.gif)
 
 ------------------------------------------------------------------------
 
