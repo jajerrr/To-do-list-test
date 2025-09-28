@@ -1,33 +1,43 @@
-# vue-project
+# ✅ To-do List App
 
-This template should help get you started developing with Vue 3 in Vite.
+แอปจัดการงาน (To-do List) ที่สร้างด้วย **Vue 3 + TypeScript + Pinia + TailwindCSS**  
+รองรับการเพิ่ม / แก้ไข / ลบ / จัดหมวดหมู่ และแยกแท็บระหว่างงานที่ยังไม่เสร็จ (My Tasks) และงานที่ทำเสร็จแล้ว (Completed)
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Features
 
-## Type Support for `.vue` Imports in TS
+- ✨ **Add Task** → เพิ่มงานใหม่พร้อม **title, description, due date, category**  
+- 📝 **Edit Task** → แก้ไขรายละเอียดงานได้ผ่าน modal  
+- ✅ **Mark Complete** → กด checkbox เพื่อทำเครื่องหมายว่างานเสร็จแล้ว  
+- 📂 **Category with Emoji** → หมวดหมู่มีสี + emoji น่ารัก ๆ  
+  - 💼 Work  
+  - 🏡 Personal  
+  - ⏰ Urgent  
+- ⏳ **Overdue Highlight** → งานที่เลยกำหนดจะถูกแสดงด้วยสีแดง  
+- 🗑️ **Delete Task** → กดลบงานเดี่ยว ๆ (มี alert ยืนยันก่อนลบ)  
+- 🗑️ **Delete Completed** → ลบงานที่เสร็จทั้งหมดพร้อม alert ยืนยัน  
+- 💾 **LocalStorage Support** → รีเฟรชแล้วยังเก็บงานไว้ได้  
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## 🛠️ Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- [Vue 3](https://vuejs.org/) + [TypeScript](https://www.typescriptlang.org/)  
+- [Pinia](https://pinia.vuejs.org/) → จัดการ state ของ tasks  
+- [TailwindCSS](https://tailwindcss.com/) → UI ที่สวยและ responsive  
+- LocalStorage → เก็บ tasks แบบ offline  
 
-## Project Setup
+---
 
-```sh
+## 📦 Installation
+
+```bash
+# ติดตั้ง dependency
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# รันเซิร์ฟเวอร์ dev
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+# build สำหรับ production
 npm run build
-```
