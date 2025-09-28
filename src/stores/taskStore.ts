@@ -27,36 +27,50 @@ export const useTaskStore = defineStore('taskStore', {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     },
     addTask(title: string, description: string, dueDate: string, category: string) {
-  this.tasks.push({
-    id: this.nextId++,
-    title,
-    description,
-    dueDate,
-    completed: false,
-    category
-  })
-  this.saveToStorage()
-},
+      this.tasks.push({
+        id: this.nextId++,
+        title,
+        description,
+        dueDate,
+        completed: false,
+        category
+      })
+      this.saveToStorage()
+    },
     toggleTask(id: number) {
       const task = this.tasks.find(t => t.id === id)
       if (task) task.completed = !task.completed
       this.saveToStorage()
     },
     deleteTask(id: number) {
-      this.tasks = this.tasks.filter(t => t.id !== id)
+      const task = this.tasks.find(t => t.id === id)
+      if (task && confirm(`⚠️ คุณแน่ใจหรือไม่ว่าต้องการลบ "${task.title}" ?`)) {
+        this.tasks = this.tasks.filter(t => t.id !== id)
+        this.saveToStorage()
+      }
+    },
+
+
+
+    editTask(id: number, newTitle: string, newDescription: string, newDueDate: string, newCategory: string) {
+      const task = this.tasks.find(t => t.id === id)
+      if (task) {
+        task.title = newTitle
+        task.description = newDescription
+        task.dueDate = newDueDate
+        task.category = newCategory
+      }
       this.saveToStorage()
     },
-    // stores/taskStore.ts
-editTask(id: number, newTitle: string, newDescription: string, newDueDate: string, newCategory: string) {
-  const task = this.tasks.find(t => t.id === id)
-  if (task) {
-    task.title = newTitle
-    task.description = newDescription
-    task.dueDate = newDueDate
-    task.category = newCategory
-  }
-  this.saveToStorage()
-},
+
+
+    deleteCompleted() {
+      if (confirm("⚠️ คุณแน่ใจหรือไม่ว่าต้องการลบ Completed tasks ทั้งหมด?")) {
+        this.tasks = this.tasks.filter(t => !t.completed)
+        this.saveToStorage()
+      }
+    }
+
 
   }
 })

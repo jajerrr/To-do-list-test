@@ -7,11 +7,10 @@
       <input type="checkbox" :checked="task.completed" @change="store.toggleTask(task.id)"
         class="h-5 w-5 mt-1 accent-blue-500 shrink-0" />
 
-
       <div class="flex-1 min-w-0 space-y-1">
         <div class="flex flex-col gap-1 items-start w-full min-w-0">
-          <div class="flex  gap-2  ">
-            <span class="block w-full font-semibold text-sm sm:text-base whitespace-normal break-words min-w-0"
+          <div class="flex gap-2 flex-wrap items-center">
+            <span class="block font-semibold text-sm sm:text-base whitespace-normal break-words min-w-0"
               :class="{ 'line-through text-gray-400': task.completed }">
               {{ task.title }}
             </span>
@@ -24,19 +23,14 @@
                 'bg-red-100 text-red-700': task.category === 'Urgent',
               }
             ]">
-              {{ categoryEmoji[task.category] }} {{ task.category }}
+              {{ categoryEmoji[task.category] || categoryEmoji.Default }} {{ task.category }}
             </span>
-
-
-
           </div>
 
-          <span v-if="task.description" class="block w-full italic text-gray-500 whitespace-normal break-words min-w-0">
+          <span v-if="task.description" class="block italic text-gray-500 whitespace-normal break-words min-w-0">
             {{ task.description }}
           </span>
         </div>
-
-
 
         <div class="text-xs sm:text-sm flex flex-wrap gap-2 items-center break-words">
           <span class="shrink-0 font-medium" :class="isOverdue && !task.completed ? 'text-red-600' : 'text-[#1C14FF]'">
@@ -47,14 +41,11 @@
             Overdue!
           </span>
         </div>
-
       </div>
     </div>
 
-
-    <div class="flex gap-2 w-full sm:w-auto justify-end sm:justify-start
-             order-3 sm:order-2">
-      <button @click="showEditModal = true"
+    <div class="flex gap-2 w-full sm:w-auto justify-end sm:justify-start order-3 sm:order-2">
+      <button v-if="!task.completed" @click="showEditModal = true"
         class="flex items-center gap-2 px-3 py-1.5 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" class="w-4 h-4">
           <path
@@ -71,13 +62,12 @@
         </svg>
         <span>Delete</span>
       </button>
-
     </div>
 
 
     <div v-if="showEditModal"
       class="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-white/10 p-4">
-      <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-5 sm:p-6 space-y-4">
+      <div class="bg-white rounded-xl shadow-xl w-full max-w-sm sm:max-w-md p-5 sm:p-6 space-y-4">
         <h2 class="text-lg sm:text-xl font-semibold text-gray-800">Edit Task</h2>
         <form @submit.prevent="saveEdit" class="space-y-4">
           <input v-model="editTitle" placeholder="Title"
@@ -86,20 +76,15 @@
           <textarea v-model="editDescription" placeholder="Description"
             class="w-full px-4 py-2 border border-gray-300 rounded-md resize-none h-24 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
 
-
           <div class="grid grid-cols-2 gap-3 pt-4">
-
             <input type="date" v-model="editDueDate"
               class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none" />
-
             <select v-model="editCategory" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none">
               <option value="Work">💼 Work</option>
               <option value="Personal">🏡 Personal</option>
               <option value="Urgent">⏰ Urgent</option>
             </select>
-
           </div>
-
 
           <div class="flex justify-end gap-3 pt-2">
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition">
@@ -116,8 +101,6 @@
   </li>
 </template>
 
-
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useTaskStore, type Task } from '@/stores/taskStore'
@@ -131,26 +114,32 @@ const editDescription = ref(props.task.description)
 const editDueDate = ref(props.task.dueDate)
 const editCategory = ref(props.task.category)
 
-//edit
+// edit
 const saveEdit = () => {
   if (editTitle.value.trim()) {
-    store.editTask(props.task.id, editTitle.value, editDescription.value, editDueDate.value, editCategory.value)
+    store.editTask(
+      props.task.id,
+      editTitle.value,
+      editDescription.value,
+      editDueDate.value,
+      editCategory.value
+    )
     showEditModal.value = false
   }
 }
 
-//overdue
+// overdue
 const isOverdue = computed(() => {
   if (!props.task.dueDate) return false
   const today = new Date().toISOString().split('T')[0]
   return props.task.dueDate < today
 })
 
-
 const categoryEmoji: Record<string, string> = {
-  Work: "💼",
-  Personal: "🏡",
-  Urgent: "⏰",
+  Work: '💼',
+  Personal: '🏡',
+  Urgent: '⏰',
+  Default: '📌'
 }
 
 

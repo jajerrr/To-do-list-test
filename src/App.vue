@@ -6,25 +6,26 @@
         <span class="text-green-500 text-4xl">✅</span>
         To-do List
       </h1>
-      <p class="text-gray-500 mt-2 text-sm sm:text-base">
+      <p class="text-gray-500 mt-5 text-sm sm:text-base">
         Plan your tasks and stay organized!
       </p>
       <div class="mt-4 h-[2px] bg-gradient-to-r from-yellow-400 via-purple-400 to-purple-400 rounded-full w-full"></div>
     </header>
 
 
-    <TaskForm />
-    <TaskList />
+    <TaskForm :activeTab="activeTab" @change-tab="activeTab = $event" />
+    <TaskList :activeTab="activeTab" />
   </div>
 </template>
 
 
-<script setup>
-import { onMounted } from 'vue'
-import { useTaskStore } from './stores/taskStore'
-import TaskForm from './components/TaskForm.vue'
-import TaskList from './components/TaskList.vue'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import TaskForm from '@/components/TaskForm.vue'
+import TaskList from '@/components/TaskList.vue'
+import { useTaskStore } from '@/stores/taskStore'
 
+const activeTab = ref<'all' | 'complete'>('all')
 const store = useTaskStore()
 
 onMounted(() => {
