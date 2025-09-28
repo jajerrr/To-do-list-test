@@ -27,9 +27,13 @@
             </span>
           </div>
 
-          <span v-if="task.description" class="block italic text-gray-500 whitespace-normal break-words min-w-0">
-            {{ task.description }}
-          </span>
+          <span
+  v-if="task.description"
+  class="block italic text-gray-500 whitespace-normal break-words w-full"
+>
+  {{ task.description }}
+</span>
+
         </div>
 
         <div class="text-xs sm:text-sm flex flex-wrap gap-2 items-center break-words">
